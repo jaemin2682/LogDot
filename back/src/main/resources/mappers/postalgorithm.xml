@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.papple.blog.repository.PostAlgorithmRepository">
+
+	<!-- 게시물의 점수 - 좋아요*1 + 조회수*1 -->
+	<select id="getPopularScore" resultType="PopularScore">
+		select id postid, good+views score from post where good+views > 0 
+	</select>
+	
+	<!-- 게시물의 점수 - 댓글 * 2 -->
+	<select id="getCommentScore" resultType="PopularScore">
+		select postid, count(*) score from comment group by postid
+	</select>
+	
+	<!-- 게시물을 읽었는지 확인 -->
+	<select id="isRead" resultType="Integer">
+		select count(*) from lookup where postid=#{postid} and email = #{email}
+	</select>
+	
+	<!-- 조회 insert -->
+	<insert id="insertRead">
+		insert into lookup(email, postid) values(#{email}, #{postid})
+	</insert>
+	
+	<!-- 해당 user가 조회한 모든 게시물 -->
+	<select id="getLookUp" resultType="Long">
+		select postid from lookup where email = #{email}
+	</select>
+	
+	<!-- 해당 post의 게시물 점수 - 좋아요*1 + 조회수*1 -->
+	<select id="getPopularScoreByPostid" resultType="Long">
+		select good+views score from post where id = #{postid}
+	</select>
+	
+	<!-- 해당 post의 댓글 점수 - 댓글 * 2 -->
+	<select id="getCommentScoreByPostid" resultType="Long">
+		select count(*) * 2 from comment where postid = #{postid}
+	</select>
+	
+	<!-- 해당 post의 해시태그 리스트 -->
+	<select id="getHashtagByPostid" resultType="String">
+		select hashtag from hashtag where postid = #{postid}
+	</select>
+	
+	<!-- 태그로 post id들 찾기 -->
+	<select id="getPostidByTag" resultType="Long">
+		select postid from hashtag where hashtag = #{hashtag}
+	</select>
+	
+	<!-- ##############################인기 태그######################### -->
+	
+	<!-- 태그점수 테이블의 태그 등록 여부 -->
+	<select id="isTag" resultType="Integer">
+		select count(*) from tagscore where tagname = #{hashtag}
+	</select>
+	
+	<!-- 태그점수 테이블에 태그 등록 -->
+	<insert id="insertTag">
+		insert into tagscore(tagname, score) values(#{hashtag}, 0)
+	</insert>
+	
+	
+	
+	<!-- 날짜 추출 -->
+	<select id="getDate" resultType="String">
+		select recentscoredate from user where email = #{email};
+	</select>
+	
+	<!-- 날짜 추출 : 월_일-->
+	<select id="getDateFormatted" resultType="String">
+		select concat(concat(month(recentscoredate),"_"), day(recentscoredate)) from user where email = #{email};
+	</select>
+	
+	<!-- 회원 점수 추출 -->
+	<select id="getScore" resultType="Long">
+		select todayscore from user where email = #{email}
+	</select>
+	
+	<!-- 회원 점수 추가 -->
+	<update id="updateScore">
+		update user set score = score + #{score}, todayscore = todayscore + #{score} where email = #{email}
+	</update>
+	
+	<!-- 오늘의 점수 0점으로 -->
+	<update id="setScore">
+		update user set todayscore = 0 where email = #{email}
+	</update>
+	
+	<!-- 날짜 최신화 -->
+	<update id="updateDate">
+		update user set recentscoredate = now() where email = #{email}
+	</update>
+
+	
+	<update id="setCurDatePost">
+		update post set createdate = now() where id = #{postid}
+	</update>
+	
+	<update id="setCurDateComment">
+		update comment set createdate = now() where id = #{id}
+	</update>
+</mapper>

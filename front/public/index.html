@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="shortcut icon" href="<%= BASE_URL %>Logo_img.svg" />
+    <meta
+      content="개발자를 위한 블로그 플랫폼! 로그 도트에 오신것을 환영합니다!"
+      name="description"
+    />
+    <meta property="og:title" content="Log." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="<%= BASE_URL %>og_image.PNG" />
+    <meta property="og:url" content="http://i3a604.p.ssafy.io/" />
+    <meta
+      property="og:description"
+      content="개발자를 위한 블로그 플랫폼! 로그 도트에 오신것을 환영합니다!"
+    />
+
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+    />
+  </head>
+  <script
+    src="//developers.kakao.com/sdk/js/kakao.min.js"
+    language="javascript"
+    type="text/javascript"
+  ></script>
+  <script>
+    Kakao.init("2ca1b1d10324f73ee74f4b4ef69ff8e1");
+  </script>
+  <body>
+    <noscript>
+      <strong
+        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+        properly without JavaScript enabled. Please enable it to
+        continue.</strong
+      >
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

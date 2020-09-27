@@ -1,0 +1,196 @@
+.editor {
+  position: relative;
+  min-width: 100vw;
+  margin: 0 auto 0 auto;
+  padding-top: 0px;
+  background-color: white;
+  .container-editor {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    header {
+      position: fixed;
+      flex-grow: 0;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: white;
+      height: 50px;
+      z-index: 1;
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0);
+        height: 30px;
+        border: 1px solid rgb(167, 167, 167);
+        color: rgb(143, 143, 143);
+        font-size: 0.8em;
+        padding: 0px 20px;
+        border-radius: 25px;
+        margin-right: 20px;
+      }
+    }
+
+    main {
+      display: flex;
+      flex-grow: 1;
+      .editor--left {
+        width: 100%;
+        padding: 24px;
+        padding-top: 54px;
+        background-color: #f9fbff;
+        @media (min-width: 1100px) {
+          width: 50%;
+        }
+      }
+      .preview--right {
+        display: none;
+        width: 50%;
+        padding: 24px;
+        padding-top: 54px;
+        background-color: white;
+        @media (min-width: 1100px) {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &__content {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+
+    * {
+      caret-color: currentColor;
+    }
+
+    pre {
+      padding: 0.7rem 1rem;
+      border-radius: 5px;
+      background: $color-black;
+      color: $color-white;
+      font-size: 0.8rem;
+      overflow-x: auto;
+
+      code {
+        display: block;
+      }
+    }
+
+    p code {
+      padding: 0.2rem 0.4rem;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      background: rgba($color-black, 0.1);
+      color: rgba($color-black, 0.8);
+    }
+
+    ul,
+    ol {
+      padding-left: 1rem;
+    }
+
+    li > p,
+    li > ol,
+    li > ul {
+      margin: 0;
+    }
+
+    a {
+      color: #1a8dff;
+      &:hover {
+        font-weight: 900;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+
+    blockquote {
+      border-left: 3px solid rgba($color-black, 0.1);
+      color: rgba($color-black, 0.8);
+      padding-left: 0.8rem;
+      font-style: italic;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    img {
+      display: block;
+      margin: 0px auto;
+      max-width: 100%;
+      border-radius: 3px;
+    }
+
+    table {
+      border-collapse: collapse;
+      table-layout: fixed;
+      width: 100%;
+      margin: 0;
+      overflow: hidden;
+
+      td,
+      th {
+        min-width: 1em;
+        border: 2px solid $color-grey;
+        padding: 3px 5px;
+        vertical-align: top;
+        box-sizing: border-box;
+        position: relative;
+        > * {
+          margin-bottom: 0;
+        }
+      }
+
+      th {
+        font-weight: bold;
+        text-align: left;
+      }
+
+      .selectedCell:after {
+        z-index: 2;
+        position: absolute;
+        content: "";
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(200, 200, 255, 0.4);
+        pointer-events: none;
+      }
+
+      .column-resize-handle {
+        position: absolute;
+        right: -2px;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        z-index: 20;
+        background-color: #adf;
+        pointer-events: none;
+      }
+    }
+
+    .tableWrapper {
+      margin: 1em 0;
+      overflow-x: auto;
+    }
+
+    .resize-cursor {
+      cursor: ew-resize;
+      cursor: col-resize;
+    }
+  }
+}
+
+.editor p.is-editor-empty:first-child::before {
+  content: attr(data-empty-text);
+  float: left;
+  color: #c4c4c4;
+  pointer-events: none;
+  height: 0;
+}

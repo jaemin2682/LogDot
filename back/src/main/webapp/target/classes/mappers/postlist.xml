@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.papple.blog.repository.PostListRepository">
+
+	<!-- 모든 post 조회(목록) -->
+	<select id="searchAllPost" resultType="PostList">
+		select nickname, profile, score, id, title, summary, picture, writer, good, views, createdate
+		from user join post on email = writer
+	</select>
+	
+	<!-- 해당 이메일의 post 조회(내용) -->
+	<select id="searchByEmail" resultType="PostList">
+		select nickname, profile, score, id, title, summary, picture, writer, good, views, createdate
+		from user join post on email = writer
+		where writer = #{email}
+	</select>
+	
+	<!-- 해당 아이디의 post 조회(목록) -->
+	<select id="searchPostById" resultType="PostList">
+		select nickname, profile, score, id, title, summary, picture, writer, good, views, createdate
+		from user join post on email = writer
+		where id = #{postid}
+	</select>
+	
+	<!-- post id로 PostDetail 조회 -->
+	<select id="searchPostDetail" resultType="PostDetail">
+		select nickname, profile, score, id, title, content, summary, picture, writer, good, views, createdate
+		from user join post on email = writer
+		where id = #{postid}
+	</select>
+	
+	<!-- post id로 hashtag 조회 --> 
+	<select id="searchHashtag" resultType="String">
+		select hashtag from hashtag where postid = #{postid}
+	</select>
+</mapper>
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.papple.blog.repository.CommentListRepository">
+
+    <!-- 해당 포스트의 모든 댓글 조회 -->
+    <select id="findByPostidAndReplytoIsNull" resultType="CommentResponse">
+        SELECT c.id, c.email, c.postid, c.likes, c.content, c.replyto, c.createdate, c.replycount, u.nickname, u.profile, u.score
+        FROM comment as c 
+        JOIN user as u ON c.email=u.email 
+        WHERE postid=#{postid} AND replyto is NULL
+        ORDER BY c.createdate
+    </select>
+
+    <!-- 해당 댓글의 모든 답댓글 조회 -->
+     <select id="findByPostidAndReplyto" resultType="CommentResponse">
+        SELECT c.id, c.email, c.postid, c.likes, c.content, c.replyto, c.createdate, c.replycount, u.nickname, u.profile, u.score
+        FROM comment as c 
+        JOIN user as u ON c.email=u.email 
+        WHERE postid=#{postid} AND replyto=#{replyto}
+        ORDER BY c.createdate
+    </select>
+
+    <!-- 해당 댓글 좋아요 -->
+    <insert id="likeComment">
+		insert into likecomment(email, commentid) values(#{email}, #{commentid})
+	</insert>
+
+    <!-- 해당 댓글 좋아요 취소 -->
+    <delete id="unlikeComment">
+		delete from likecomment where email = #{email} and commentid = #{commentid}
+	</delete>
+
+    <select id="findByEmailAndCommentid" resultType="Integer">
+        SELECT EXISTS(SELECT * from likecomment WHERE email = #{email} and commentid = #{commentid})
+    </select>
+</mapper>

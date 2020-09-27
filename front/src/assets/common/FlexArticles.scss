@@ -1,0 +1,16 @@
+@import "@/assets/_variables.scss";
+
+.container-article {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: $twoArticles) {
+  .list-description {
+    font-size: 1.3em;
+  }
+  .container-article {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

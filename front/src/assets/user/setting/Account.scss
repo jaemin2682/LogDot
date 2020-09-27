@@ -1,0 +1,321 @@
+.container-account {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .background {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 1000px;
+    height: 100vh;
+  }
+  .container-inputNickname {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin: 0;
+  }
+  .container-inputPassword {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .edit-nickname {
+    margin-bottom: 24px;
+    hr {
+      width: 530px;
+      border: 1.5px solid #c0c0c0;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      border-block-end: none;
+    }
+  }
+  .edit-password {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 0 10px;
+    width: 500px;
+  }
+
+  /** input check */
+
+  .hide {
+    display: none;
+  }
+  .show {
+    display: block;
+  }
+}
+
+header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-user-20.png);
+  background-position: center;
+  background-size: cover;
+  height: 320px;
+  z-index: 1;
+  overflow: hidden;
+  .profile-image {
+    position: absolute;
+    background-image: url(https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-user-20.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    button {
+      width: 100%;
+      height: 100%;
+      font-size: 1.4rem;
+      color: rgba(0, 0, 0, 0);
+      background-color: rgba(0, 0, 0, 0);
+      border-radius: 50%;
+      &:hover {
+        color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+    }
+  }
+}
+header:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  transform: scale(1.2);
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(6px);
+  -moz-filter: blur(6px);
+  -o-filter: blur(6px);
+  -ms-filter: blur(6px);
+  filter: url(#blur);
+}
+main {
+  background-color: white;
+  span {
+    font-weight: 900;
+    font-size: 1.2em;
+  }
+  p {
+    font-weight: 400;
+    font-size: 1.7em;
+    color: #9c9c9c;
+    margin: 0;
+  }
+  padding: 50px;
+  div {
+    margin-bottom: 40px;
+    span {
+      margin-bottom: 20px;
+    }
+  }
+
+  .btn-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: lavender;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+  .container-btn-social {
+    display: flex;
+    flex-direction: row;
+    width: 120px;
+    justify-content: space-between;
+    margin-bottom: 0px;
+    .btn-google {
+      background-color: tomato;
+    }
+    .btn-facebook {
+      background-color: rgb(11, 133, 255);
+    }
+    .btn-github {
+      background-color: black;
+    }
+  }
+}
+
+.nickname {
+  padding: 0 3px;
+  position: relative;
+  cursor: pointer;
+}
+
+.background {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+.input-nickname {
+  width: 470px;
+  border: 0;
+  justify-self: center;
+  font-weight: 400;
+  font-size: 1.7em;
+  z-index: 1;
+  color: #c0c0c0;
+}
+
+.input-password {
+  background-image: linear-gradient(lightgrey, lightgrey);
+  background-position: bottom 5px center;
+  background-size: calc(100% - 0px) 1.5px;
+  background-repeat: no-repeat;
+  width: 500px;
+  border: 0;
+  padding-bottom: 15px;
+  justify-self: center;
+  font-weight: 400;
+  font-size: 1rem;
+  z-index: 1;
+  margin-top: 5px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.btn-edit {
+  color: #1a7cff;
+  font-weight: 600;
+  z-index: 1;
+  &:hover {
+    color: rgb(121, 121, 173);
+  }
+}
+
+.btn-pw {
+  color: #1a7cff;
+  z-index: 1;
+  &:hover {
+    color: rgb(121, 121, 173);
+  }
+}
+
+.span-password {
+  cursor: pointer;
+  &:hover {
+    color: rgb(121, 121, 173);
+  }
+}
+
+.container-unregister {
+  position: relative;
+  bottom: 0;
+  margin-top: 50px;
+}
+
+.span-unregister {
+  color: #9c9c9c;
+  font-weight: 200;
+  cursor: pointer;
+}
+
+.msg {
+  display: block;
+  text-align: left;
+  font-size: 0.9em;
+  margin-left: 5px;
+  margin-bottom: 0;
+  color: crimson;
+}
+
+.level-icon {
+  .level-title {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    button {
+      width: 20px;
+      height: 20px;
+      margin: 0px 12px;
+      background-color: #e9f1ff;
+      border-radius: 50%;
+      z-index: 1;
+    }
+  }
+}
+
+.levelicon-and-bar {
+  display: flex;
+  flex-direction: row !important;
+  align-items: center !important;
+  margin: 0;
+  span {
+    margin: 0 10px;
+    font-size: 1em;
+  }
+  .meter {
+    width: 400px;
+    height: 15px;
+    margin: 0;
+    padding: 3px;
+    position: relative;
+    background: #f0f0f0;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+    box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+    // display: flex;
+    // justify-content: center;
+    span {
+      display: block;
+      margin: 0;
+      height: 9px;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      background-color: #6da7ff;
+      background-image: linear-gradient(
+        center bottom,
+        #6da7ff 37%,
+        #6da7ff 69%
+      );
+      box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+      position: absolute;
+      overflow: hidden;
+    }
+  }
+}
+
+.score {
+  display: block !important;
+  padding: 0 16px;
+  width: 100%;
+  text-align: right !important;
+  line-height: 25px;
+  font-size: 0.8em;
+  margin: 0;
+  span {
+    font-size: 1.1em !important;
+    margin-left: 3px;
+    color: #6da7ff;
+    display: inline;
+  }
+}

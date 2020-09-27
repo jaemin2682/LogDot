@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.papple.blog.repository.PostAlgorithmRepository">
+
+	<!-- 게시물의 점수 - 좋아요*1 + 조회수*1 -->
+	<select id="getPopularScore" resultType="PopularScore">
+		select id postid, good+views score from post where good+views > 0
+	</select>
+	
+	<!-- 게시물의 점수 - 댓글 * 2 -->
+	<select id="getCommentScore" resultType="PopularScore">
+		select postid, count(*) score from comment group by postid
+	</select>
+	
+</mapper>

@@ -1,0 +1,164 @@
+@import "@/assets/_variables.scss";
+
+.article {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2%;
+  height: 420px;
+  padding: 16px 16px;
+}
+.btn-read {
+  height: 85%;
+  .header-article {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+    font-size: 2em;
+    border-radius: 5px 5px 0% 0%;
+    overflow: hidden;
+    span {
+      width: 100%;
+      max-height: 3.2em;
+      overflow: hidden;
+      color: white;
+      font-weight: 600;
+      padding: 0px 10px;
+    }
+    img {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 5px 5px 0% 0%;
+    }
+  }
+  .body-article {
+    height: 40%;
+    padding: 12px;
+    text-align: left;
+    overflow: hidden;
+    background-color: white;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    h5 {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      word-break: break-word;
+      font-size: 1.4rem;
+      margin-bottom: 5px;
+      overflow-wrap: break-word;
+    }
+    .description {
+      word-break: break-word;
+      overflow-wrap: break-word;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      height: 3.9375rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      color: rgb(73, 80, 87);
+      margin: 0px 0px 1.5rem;
+      overflow: hidden;
+    }
+  }
+}
+
+.footer-article {
+  display: flex;
+  height: 15%;
+  padding-left: 16px;
+  padding-right: 16px;
+  align-items: center;
+  background-color: white;
+  border-radius: 0 0 5px 5px;
+  .btn-like:hover {
+    cursor: unset;
+  }
+  svg,
+  .img-profile {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 12px;
+    fill: gray;
+  }
+  .level-icon {
+    width: 1.2em;
+    height: 1.2em;
+  }
+}
+
+.nickname {
+  font-size: 1em;
+  margin-left: 8px;
+  max-height: 25px;
+  overflow: hidden;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.like {
+  margin-left: auto;
+  svg {
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: middle;
+    margin-right: 16px;
+    fill: rgb(228, 228, 228);
+  }
+  .fill-red {
+    fill: crimson;
+  }
+  span {
+    vertical-align: middle;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: $twoArticles) {
+  .article {
+    width: 100%;
+    flex-grow: 0;
+  }
+}
+@media (min-width: $threeArticles) {
+  .article {
+    width: 50%;
+  }
+}
+@media (min-width: $fourArticles) {
+  .article {
+    width: 33.3%;
+  }
+}
+@media (min-width: $fiveArticles) {
+  .article {
+    width: 25%;
+  }
+}
+@media (min-width: $sixArticles) {
+  .article {
+    width: 20%;
+  }
+}
+@media (min-width: $sevenArticles) {
+  .article {
+    width: 16.6%;
+  }
+}
+
+@media (min-width: 0) {
+  .article.static {
+    width: 320px;
+    flex: 0 0 auto;
+  }
+}

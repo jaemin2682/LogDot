@@ -1,0 +1,62 @@
+aside {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  min-height: 100%;
+  border-right: 1px solid rgb(218, 218, 218);
+  background-color: white;
+}
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 20px;
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    // background-image: url("https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-user-20.png");
+    margin-bottom: 20px;
+  }
+  .icon-and-name {
+    display: flex;
+    align-items: center;
+    font-weight: 900;
+    font-size: 1.4em;
+    margin-top: 10px;
+    img {
+      margin-right: 5px;
+    }
+  }
+  .email {
+    margin-top: 5px;
+    font-size: 1rem;
+  }
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.btn-navitem {
+  text-align: left;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  color: rgb(90, 90, 90);
+  &:hover {
+    background-color: aliceblue;
+  }
+}
+
+.icon-logo {
+  width: 22px;
+  height: 22px;
+}

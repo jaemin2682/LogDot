@@ -1,0 +1,105 @@
+@import "@/assets/_variables.scss";
+
+.profile {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  width: 22.5%;
+  height: 160px;
+  background-color: white;
+  border-radius: 5px;
+  margin-left: 16px;
+  margin-top: 16px;
+  margin-right: 16px;
+  margin-bottom: 24px;
+  .left {
+    display: flex;
+    margin-left: 16px;
+    margin-right: 16px;
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      vertical-align: middle;
+    }
+  }
+  .right {
+    line-height: normal;
+    vertical-align: middle;
+    display: flex;
+    flex-direction: column;
+    margin-right: 16px;
+    width: 60%;
+
+    .name {
+      text-align: left;
+      font-size: 0.9em;
+    }
+    .blog-name {
+      text-align: left;
+      font-size: 1.3em;
+      font-weight: 600;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .blog-name-empty {
+      color: #727272;
+    }
+    .footer {
+      margin-top: 10px;
+      .btn-alarm {
+        &:hover {
+          opacity: 0.4;
+        }
+        &:active {
+          opacity: 1;
+        }
+      }
+      .btn-follow {
+        background-color: #6da7ff;
+        border-radius: 5px;
+        float: right;
+        padding: 8px 10px;
+        color: white;
+        &:hover {
+          opacity: 0.4;
+        }
+        &:active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $twoArticles) {
+  .profile {
+    width: 100%;
+    flex-grow: 0;
+  }
+}
+@media (min-width: $threeArticles) {
+  .profile {
+    width: 50%;
+  }
+}
+@media (min-width: $fourArticles) {
+  .profile {
+    width: 33.3%;
+  }
+}
+@media (min-width: $fiveArticles) {
+  .profile {
+    width: 25%;
+  }
+}
+@media (min-width: $sixArticles) {
+  .profile {
+    width: 20%;
+  }
+}
+@media (min-width: $sevenArticles) {
+  .profile {
+    width: 16.6%;
+  }
+}

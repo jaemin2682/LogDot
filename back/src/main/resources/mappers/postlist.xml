@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.papple.blog.repository.PostListRepository">
+
+	<!-- 모든 post 조회(목록) -->
+	<select id="searchAllPost" resultType="PostList">
+		select nickname, profile, score, id, title, summary, picture, writer, good, views, createdate
+		from user join post on email = writer
+		order by createdate desc
+	</select>
+	
+	<!-- 무한 스크롤 -->
+	<select id="paging" resultType="PostList">
+		select nickname, profile, score, id, title, summary, picture, writer, good, views, createdate
+		from user join post on email = writer
+		order by createdate desc
+		limit #{page}, 10 
+	</select>
+	
+	<!-- 해당 이메일의 post 조회(내용) -->
+	<select id="searchByEmail" resultType="PostList">
+		select nickname, profile, score, id, title, summary, picture, writer, good, views, createdate
+		from user join post on email = writer
+		where writer = #{email}
+		order by createdate desc
+	</select>
+	
+	<!-- 해당 아이디의 post 조회(목록) -->
+	<select id="searchPostById" resultType="PostList">
+		select nickname, profile, score, id, title, summary, picture, writer, good, views, createdate
+		from user join post on email = writer
+		where id = #{postid}
+	</select>
+
+	<!-- 일반 검색 -->
+	<select id="searchByWord" resultType="PostList">
+		select * from post where title like CONCAT('%', #{word}, '%') or content like CONCAT('%', #{word}, '%')
+		order by createdate desc
+	</select>
+	
+	<!-- 해시태그 검색 -->
+	<select id="searchByTag" resultType="PostList">
+		select * from post where exists(select * from hashtag where postid = id and hashtag = #{hashtag})
+		order by createdate desc
+	</select>
+	
+	<!-- 내 해시태그 카테고리 내 게시물 리스트 검색 -->
+	<select id="searchPostByMyTag" resultType="PostList">
+		select * from post where exists(select * from hashtag where postid = id and hashtag = #{hashtag}) and writer = #{email}
+		order by createdate desc
+	</select>
+	
+	<!-- post id로 PostDetail 조회 -->
+	<select id="searchPostDetail" resultType="PostDetail">
+		select nickname, profile, score, id, title, content, summary, picture, writer, good, views, createdate
+		from user join post on email = writer
+		where id = #{postid}
+	</select>
+	
+	<!-- post id로 hashtag 조회 --> 
+	<select id="searchHashtag" resultType="String">
+		select hashtag from hashtag where postid = #{postid}
+	</select>
+
+	<!-- 해당 사용자의 방문 기록 검색 -->
+	<select id ="findHistoryByUser" resultType="Long">
+		SELECT postid from history where email=#{email} order by createdate desc
+	</select>
+	
+	<!-- 해당 사용자의 방문 기록 검색 페이징 -->
+	<select id ="findHistoryByUserPaging" resultType="Long">
+		SELECT postid from history where email=#{email} order by createdate desc limit #{page}, 10 
+	</select>
+	
+	<!-- 해당 사용자의 좋아요 리스트 -->
+	<select id="findGoodListByEmail" resultType="Long">
+		select postid from good where email = #{email} order by createdate desc
+	</select>
+	
+	<!-- 해당 사용자의 좋아요 리스트 페이징-->
+	<select id="findGoodListByEmailPaging" resultType="Long">
+		select postid from good where email = #{email} order by createdate desc limit #{page}, 10 
+	</select>
+	
+	<!-- 해당 사용자의 보관함 리스트 -->
+	<select id="findStorageListByEmail" resultType="Long">
+		select postid from storage where email = #{email} order by createdate desc
+	</select>
+	
+	<!-- 해당 사용자의 보관함 리스트 페이징-->
+	<select id="findStorageListByEmailPaging" resultType="Long">
+		select postid from storage where email = #{email} order by createdate desc limit #{page}, 10 
+	</select>
+	
+	<!-- 해당 사용자의 팔로워의 최신 게시물 리스트 -->
+	<select id="findLatestMyFollowPost" resultType="PostList">
+		select * from post where exists(select * from follow where followed = writer and follower = #{email}) order by createdate desc
+	</select>
+	
+	<!-- 해당 사용자의 팔로워의 최신 게시물 리스트 페이징 -->
+	<select id="findLatestMyFollowPostPaging" resultType="PostList">
+		select * from post where exists(select * from follow where followed = writer and follower = #{email}) order by createdate desc limit #{page}, 10 
+	</select>
+	
+	<!-- 해당 사용자의 팔로워의 최신 게시물 리스트 - 10개만 보여주기(Main 페이지) -->
+	<select id="findLatestMyFollowPostLimit10" resultType="PostList">
+		select * from post where exists(select * from follow where followed = writer and follower = #{email}) order by createdate desc limit 10
+	</select>
+
+
+</mapper>
+
